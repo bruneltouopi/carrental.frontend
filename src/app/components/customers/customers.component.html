@@ -1,0 +1,22 @@
+<p-table [value]="customers">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-customer>
+        <tr>
+            <td>{{customer.id}}</td>
+            <td>{{customer.name}}</td>
+            <td>{{customer.email}}</td>
+            <td>
+              <a href="#"><fa name="book"></fa></a>
+              <a [routerLink]="['/customers', customer.id]"><fa name="eye"></fa></a>
+              <a href="#"><fa name="trash"></fa></a>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

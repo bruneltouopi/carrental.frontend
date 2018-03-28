@@ -1,0 +1,44 @@
+<div class="row">
+
+  <form class="form-inline col-md-12">
+    <p-calendar [(ngModel)]="startDate" name="startDate" dateFormat="dd-MM-yy"></p-calendar>
+    <p-calendar [(ngModel)]="endDate" name="endDate" dateFormat="dd-MM-yy"></p-calendar>
+    <p-button type="submit" class="btn btn-default" (click)="search()" label="Search"></p-button>
+  </form>
+  <div class="col-md-12">
+    <p-table [value]="reservations">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Id</th>
+          <th>Start date</th>
+          <th>End date</th>
+          <th>Actions</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-reservation>
+        <tr>
+          <td>
+            {{reservation.id}}
+          </td>
+          <td>
+            {{reservation.startDate | date:'dd-MM-yyyy'}}
+          </td>
+          <td>
+            {{reservation.endDate | date:'dd-MM-yyyy'}}
+          </td>
+          <td>
+            <a href="#">
+              <fa name="book"></fa>
+            </a>
+            <a [routerLink]="['/reservations', reservation.id]">
+              <fa name="eye"></fa>
+            </a>
+            <a href="#">
+              <fa name="trash"></fa>
+            </a>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
