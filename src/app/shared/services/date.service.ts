@@ -20,4 +20,8 @@ export class DateService {
   public prepareForInput(date: Date): string {
     return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
   }
+
+  public daysBetweenDates(past: Date, future: Date): number {
+    return  Math.ceil((future.getTime() - past.getTime())  / 86400000);
+  }
 }

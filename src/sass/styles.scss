@@ -1,15 +1,5 @@
 @import './variables';
 @import './mixins';
 
-nav {
-    text-align: center;
-    display: flex;
-}
-
-nav > a {
-    flex: 1;
-}
-
-p-table {
-    background: 'red';
-}
+@import './main';
+@import './nav';

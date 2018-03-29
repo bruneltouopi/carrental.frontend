@@ -1,9 +1,64 @@
-<p-panel >
-    <p-header>
-        Header content here
-    </p-header>
-    {{id}}
-    <p-footer>
-        Footer content here
-    </p-footer>
-</p-panel>
+<div class="customer-detail-component-container">
+
+    <p-panel class="ui-xl-6 ui-lg-8 ui-md-10 ui-g-12">
+        <p-header>
+            <div class="ui-helper-clearfix">
+                <span class="ui-panel-title" style="font-size:16px;display:inline-block;margin-top:2px">{{customer?.name}}</span>
+
+                <p-splitButton [style]="{'float':'right'}" label="Save" icon="fa-check" (onClick)="save()" [model]="items"></p-splitButton>
+            </div>
+        </p-header>
+        <form [formGroup]="formGroup">
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-6">
+                    <div class="ui-inputgroup">
+                        <span class="ui-inputgroup-addon">
+                            <fa name="envelope"></fa>
+                        </span>
+                        <input type="email"  [email]="true" formControlName="email" pInputText placeholder="Email">
+                    </div>
+                </div>
+
+                <div class="ui-g-12 ui-md-6">
+                    <div class="ui-inputgroup">
+                        <span class="ui-inputgroup-addon">
+                            <fa name="user"></fa>
+                        </span>
+                        <input type="text" formControlName="name" pInputText placeholder="Name">
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        Price owed: &euro; {{owedPrice}}
+        Total income: &euro; {{totalPrice}}
+        <hr>
+        <p-table [value]="reservations">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>#</th>
+                    <th>From</th>
+                    <th>Until</th>
+                    <th>Paid</th>
+                    <th>Car</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-reservation>
+                <tr>
+                    <td><a [routerLink]="['/reservations', reservation.id]">{{reservation.id}}</a></td>
+                    <td>{{reservation.startDate | date:'dd-MM-yyyy'}}</td>
+                    <td>{{reservation.startDate | date:'dd-MM-yyyy'}}</td>
+                    <td>
+                        <span *ngIf="reservation.paid">
+                            <fa name="check"></fa> Paid</span>
+                        <span *ngIf="!reservation.paid">
+                            <fa name="times"></fa> Not paid</span>
+                    </td>
+                    <td>
+                        <a [routerLink]="['/cars', reservation.car]">{{reservation.realCar?.name}}</a>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </p-panel>
+</div>

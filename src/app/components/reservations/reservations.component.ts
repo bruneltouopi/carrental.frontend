@@ -20,12 +20,18 @@ export class ReservationsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.reservationService.findAll().subscribe(items => this.reservations = items);
+    this.reservationService.findAll().subscribe(items => this.reservations = items.map((item) => {
+      this.reservationService.findCustomer(item.id)
+      .subscribe(customer => item.realCustomer = customer);
+
+      this.reservationService.findCar(item.id)
+      .subscribe(car => item.realCar = car);
+
+      return item;
+    }));
   }
 
   search() {;
-    console.log(this.startDate);
-    console.log(this.endDate);
     this.reservationService.findByDates(this.startDate, this.endDate).subscribe(items => this.reservations = items);
   }
 }

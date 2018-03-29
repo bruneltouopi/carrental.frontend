@@ -1,17 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './/app-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DecimalPipe } from '@angular/common';
+
+//toastr
+import { ToastrModule } from 'ngx-toastr';
 
 //primeng
-import {TableModule} from 'primeng/table';
-import {ButtonModule} from 'primeng/button';
-import {PanelModule} from 'primeng/panel';
-import {SidebarModule} from 'primeng/sidebar';
-import {CalendarModule} from 'primeng/calendar';
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
+import { PanelModule } from 'primeng/panel';
+import { SidebarModule } from 'primeng/sidebar';
+import { CardModule } from 'primeng/card';
+import { CalendarModule } from 'primeng/calendar';
+import { SplitButtonModule } from 'primeng/splitbutton';
 
 //app
 import { AppComponent } from './app.component';
@@ -33,9 +39,12 @@ import { ReservationsService } from './components/reservations/reservations.serv
 
 //customer-detail
 import { CustomerDetailComponent } from './components/customer-detail/customer-detail.component';
+import { CustomerDetailService } from './components/customer-detail/customer-detail.service';
 
 //navbar
 import { NavbarComponent } from './components/navbar/navbar.component';
+import CacheService from './shared/cache/Cache';
+import { JsonInterceptor } from './shared/services/json-interceptor.service';
 
 
 @NgModule({
@@ -58,13 +67,24 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     CalendarModule,
     BrowserAnimationsModule,
     PanelModule,
-    SidebarModule
+    SidebarModule,
+    CardModule,
+    SplitButtonModule,
+    ReactiveFormsModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     CarsService,
     CustomersService,
     ReservationsService,
-    DateService
+    CustomerDetailService,
+    DateService,
+    CacheService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JsonInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

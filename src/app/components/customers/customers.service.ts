@@ -3,11 +3,12 @@ import BaseService from '../../shared/abstraction/base.service';
 import { HttpClient } from '@angular/common/http';
 import Customer from '../../shared/models/customer.model';
 import { Observable } from 'rxjs/Observable';
+import Cache from '../../shared/cache/Cache';
 
 @Injectable()
 export class CustomersService extends BaseService<Customer> {
-  constructor(http: HttpClient) {
-    super(http, "customers");
+  constructor(http: HttpClient, cache: Cache) {
+    super(http, cache, "customers");
   }
 
   findAll() : Observable<Customer[]> {

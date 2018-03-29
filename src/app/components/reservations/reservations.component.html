@@ -1,44 +1,19 @@
-<div class="row">
-
-  <form class="form-inline col-md-12">
+<div class="ui-g">
+  <form class="form-inline ui-xl-12">
     <p-calendar [(ngModel)]="startDate" name="startDate" dateFormat="dd-MM-yy"></p-calendar>
     <p-calendar [(ngModel)]="endDate" name="endDate" dateFormat="dd-MM-yy"></p-calendar>
     <p-button type="submit" class="btn btn-default" (click)="search()" label="Search"></p-button>
   </form>
-  <div class="col-md-12">
-    <p-table [value]="reservations">
-      <ng-template pTemplate="header">
-        <tr>
-          <th>Id</th>
-          <th>Start date</th>
-          <th>End date</th>
-          <th>Actions</th>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-reservation>
-        <tr>
-          <td>
-            {{reservation.id}}
-          </td>
-          <td>
-            {{reservation.startDate | date:'dd-MM-yyyy'}}
-          </td>
-          <td>
-            {{reservation.endDate | date:'dd-MM-yyyy'}}
-          </td>
-          <td>
-            <a href="#">
-              <fa name="book"></fa>
-            </a>
-            <a [routerLink]="['/reservations', reservation.id]">
-              <fa name="eye"></fa>
-            </a>
-            <a href="#">
-              <fa name="trash"></fa>
-            </a>
-          </td>
-        </tr>
-      </ng-template>
-    </p-table>
+
+  <div class="ui-g-12 ui-md-6 ui-lg-4 ui-xl-3" *ngFor="let reservation of reservations">
+      <p-card title="{{reservation.realCar?.name}}" subtitle="{{reservation.realCustomer?.name}}">
+          <p-header>
+             <img alt="test" src="https://www.primefaces.org/primeng/assets/showcase/images/usercard.png" />
+          </p-header>
+          From: {{reservation.startDate | date:'dd-MM-yyyy'}}
+          Until: {{reservation.endDate | date:'dd-MM-yyyy'}}
+          <p-footer>
+              <button pButton [routerLink]="['/reservations', reservation.id]" type="button" label="View" icon="fa-eye"></button>
+          </p-footer>
+      </p-card>
   </div>
-</div>

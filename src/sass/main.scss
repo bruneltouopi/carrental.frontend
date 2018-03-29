@@ -1,0 +1,13 @@
+html, body, div#root-container, nav {
+    width: 100%;
+    height: 100%;
+    background: $backgroundColor;
+}
+
+a {
+    color: $darkBlueAccent;
+}
+
+th {
+    text-align: left;
+}
