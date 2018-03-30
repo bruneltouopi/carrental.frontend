@@ -5,9 +5,36 @@ html, body, div#root-container, nav {
 }
 
 a {
-    color: $darkBlueAccent;
+    color: $lightBlueAccent;
 }
 
 th {
     text-align: left;
+}
+
+router-outlet ~ * {
+    width: 100%;
+    height: 100%;
+}
+
+body .ui-widget-content {
+    border: 1px solid #e8e8e8 !important;
+}
+
+body .ui-corner-all {
+    border-radius: 0 !important;
+}
+
+div.detail-component-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    padding-top: 100px;
+
+    width: 100%;
+    height: 100%;
+}
+
+.text-align-right {
+    text-align: right;
 }

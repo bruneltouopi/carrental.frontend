@@ -2,7 +2,7 @@
   <div class="ui-g-12 ui-md-2 ui-g-nopad ui-md-nopad">
       <app-navbar></app-navbar>
   </div>
-  <div class="ui-g-12 ui-md-10 ui-g-nopad">
-    <router-outlet></router-outlet>
+  <div class="ui-g-12 ui-md-10 ui-g-nopad" style="position: relative" [@fadeAnimation]="getRouterOutletState(o)">
+    <router-outlet #o="outlet"></router-outlet>
   </div>
 </div>

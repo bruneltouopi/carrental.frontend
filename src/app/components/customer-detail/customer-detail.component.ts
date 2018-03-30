@@ -8,56 +8,40 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Location } from '@angular/common';
 import { DateService } from '../../shared/services/date.service';
+import { BaseDetailComponent } from '../../shared/abstraction/base.detail.component';
 
 @Component({
   selector: 'app-customer-detail',
   templateUrl: './customer-detail.component.html',
   styleUrls: ['./customer-detail.component.scss']
 })
-export class CustomerDetailComponent implements OnInit {
-  private customerSub: any;
+export class CustomerDetailComponent extends BaseDetailComponent<Customer> implements OnInit {
   private reservationsSub: any;
-
-  private customer: Customer;
   private reservations: Reservation[];
-
-  private items: MenuItem[];
-
-  public formGroup: FormGroup;
 
   public totalPrice: number;
   public owedPrice: number;
 
-  constructor(private route: ActivatedRoute, private customerDetailService: CustomerDetailService, private formBuilder: FormBuilder, private toastrService: ToastrService, private location: Location, private dateService: DateService) {
-    this.createForm();
+  constructor(route: ActivatedRoute, customerDetailService: CustomerDetailService, formBuilder: FormBuilder, toastrService: ToastrService, location: Location, private dateService: DateService) {
+    super(route, customerDetailService, formBuilder, toastrService, location);
     this.totalPrice = 0;
   }
 
-  ngOnInit() {
-    let id = this.route.snapshot.params['id'];
-    this.customerSub = this.customerDetailService.getById(id).subscribe(customer => {
-      this.customer = customer;
-      this.createForm();
-    });
+  customerDetailService = ():CustomerDetailService => (this.baseService as CustomerDetailService);
 
-    this.reservationsSub = this.customerDetailService.getReservations(id).subscribe(reservations => {
+  ngOnInit() {
+    super.ngOnInit();
+
+    this.reservationsSub = this.customerDetailService().getReservations(this.id).subscribe(reservations => {
       this.reservations = reservations;
       reservations.forEach((reservation) => {
-        this.customerDetailService.getCarForReservation(reservation.id).subscribe(car => {
+        this.customerDetailService().getCarForReservation(reservation.id).subscribe(car => {
           reservation.realCar = car;
           this.calculateTotalPrice();
         }
         );
       });
     });
-
-    this.items = [
-      {
-        label: 'Delete', icon: 'fa-close', command: () => {
-          this.delete()
-        }
-      }
-    ];
   }
 
   calculateTotalPrice() {
@@ -73,7 +57,7 @@ export class CustomerDetailComponent implements OnInit {
   mapPrice(reservation: Reservation, includePaid: boolean): number {
     if((reservation.paid && !includePaid) || reservation.realCar === null) return 0;
   
-    return reservation.realCar.pricePerDay * this.dateService.daysBetweenDates(reservation.startDate, reservation.endDate);
+    return (reservation.realCar === undefined ? 0 : reservation.realCar.pricePerDay) * this.dateService.daysBetweenDates(reservation.startDate, reservation.endDate);
   }
 
   sum(first:number, second:number) {
@@ -82,34 +66,28 @@ export class CustomerDetailComponent implements OnInit {
 
   createForm() {
     this.formGroup = this.formBuilder.group({
-      name: [this.customer === undefined ? '' : this.customer.name, Validators.required],
-      email: [this.customer === undefined ? '' : this.customer.email, Validators.required],
-    });
-  }
-
-  delete() {
-    this.customerDetailService.delete(this.customer.id).subscribe((del) => {
-      this.toastrService.success("Customer has been deleted!");
-      this.location.back();
+      name: [this.item === undefined ? '' : this.item.name, Validators.required],
+      email: [this.item === undefined ? '' : this.item.email, Validators.required],
     });
   }
 
   save() {
-    if (!this.formGroup.valid) {
-      this.toastrService.error("Please fill in all fields");
-      return;
-    }
+    super.save();
 
-    this.customer.email = this.formGroup.get('email').value;
-    this.customer.name = this.formGroup.get('name').value;
+    this.item.email = this.formGroup.get('email').value;
+    this.item.name = this.formGroup.get('name').value;
 
-    this.customerDetailService.saveCustomer(this.customer.id, this.customer).subscribe(
+    this.customerDetailService().saveCustomer(this.item.id, this.item).subscribe(
       customer => this.toastrService.success("Customer has been saved!")
     );
   }
 
+  delete() {
+    super.delete();
+  }
+
   ngOnDestroy() {
-    this.customerSub.unsubscribe();
+    super.ngOnDestroy();
     this.reservationsSub.unsubscribe();
   }
 }

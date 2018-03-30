@@ -1,5 +1,6 @@
 import CacheItem from "./CacheItem";
 import { Injectable } from "@angular/core";
+import { Observable } from "rxjs/Observable";
 
 @Injectable()
 export default class CacheService {
@@ -10,12 +11,15 @@ export default class CacheService {
         this.expirationTime = 60000;
     }
 
-    public find<T>(key: string): T | undefined {
+    public find<T>(key: string): Observable<T> | undefined {
         if(!CacheService.items.has(key)) return undefined;
 
         let item = CacheService.items.get(key) as CacheItem<T>;
-        
-        if(!item.hasExpired) return item.value;
+
+        if(!item.hasExpired) return Observable.create((observer) =>{
+            observer.next(item.value);
+            observer.complete();
+        });
 
         CacheService.items.delete(key);
         return undefined;
@@ -24,5 +28,20 @@ export default class CacheService {
     public insert<T>(key: string, value: T): void {
         let cacheItem = new CacheItem<T>(value, this.expirationTime);
         CacheService.items.set(key, cacheItem);
+    }
+
+    public cache<T>(url: string, func:() => Observable<T>): Observable<T> {
+        let result = this.find<T>(url);
+
+        if(result === undefined) {
+            result = func();
+
+            let sub = result.subscribe(r => {
+                this.insert(url, r);
+                sub.unsubscribe();
+            });
+        }
+
+        return result;
     }
 }

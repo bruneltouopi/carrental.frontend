@@ -1,0 +1,13 @@
+:host {
+    p-footer {
+        display: flex;
+    }
+    
+    p-footer > button {
+        margin: 0 auto;
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+}

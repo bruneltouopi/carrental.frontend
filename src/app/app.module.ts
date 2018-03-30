@@ -18,6 +18,7 @@ import { SidebarModule } from 'primeng/sidebar';
 import { CardModule } from 'primeng/card';
 import { CalendarModule } from 'primeng/calendar';
 import { SplitButtonModule } from 'primeng/splitbutton';
+import {FieldsetModule} from 'primeng/fieldset';
 
 //app
 import { AppComponent } from './app.component';
@@ -41,10 +42,20 @@ import { ReservationsService } from './components/reservations/reservations.serv
 import { CustomerDetailComponent } from './components/customer-detail/customer-detail.component';
 import { CustomerDetailService } from './components/customer-detail/customer-detail.service';
 
+//car-detail
+import { CarDetailComponent } from './components/car-detail/car-detail.component';
+import { CarDetailService } from './components/car-detail/car-detail.service';
+
 //navbar
 import { NavbarComponent } from './components/navbar/navbar.component';
+
+//card-header-gradient
+import { CardHeaderGradientComponent } from './components/card-header-gradient/card-header-gradient.component';
+
+//Propietary
 import CacheService from './shared/cache/Cache';
 import { JsonInterceptor } from './shared/services/json-interceptor.service';
+
 
 
 @NgModule({
@@ -54,7 +65,9 @@ import { JsonInterceptor } from './shared/services/json-interceptor.service';
     CustomersComponent,
     ReservationsComponent,
     CustomerDetailComponent,
-    NavbarComponent
+    NavbarComponent,
+    CarDetailComponent,
+    CardHeaderGradientComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +84,8 @@ import { JsonInterceptor } from './shared/services/json-interceptor.service';
     CardModule,
     SplitButtonModule,
     ReactiveFormsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    FieldsetModule
   ],
   providers: [
     CarsService,
@@ -84,7 +98,8 @@ import { JsonInterceptor } from './shared/services/json-interceptor.service';
       provide: HTTP_INTERCEPTORS,
       useClass: JsonInterceptor,
       multi: true
-    }
+    },
+    CarDetailService
   ],
   bootstrap: [AppComponent]
 })

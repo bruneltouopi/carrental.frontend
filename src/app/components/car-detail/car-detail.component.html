@@ -1,0 +1,59 @@
+<div class="detail-component-container">
+  <p-fieldset component="cars" class="ui-xl-6 ui-lg-8 ui-md-10 ui-g-12" legend="{{item?.name}}">
+    <form [formGroup]="formGroup">
+      <h3 class="first">Details</h3>
+      <div class="ui-g">
+          <div class="ui-g-12 ui-md-6">
+              <div class="ui-inputgroup notinline">
+                  <label>Name</label>
+                  <input type="text" formControlName="name" pInputText placeholder="Name">
+              </div>
+          </div>
+
+          <div class="ui-g-12 ui-md-6">
+              <div class="ui-inputgroup notinline">
+                  <label>Price per day</label>
+                  <input type="number" step="0.01" min="0.01" formControlName="pricePerDay" pInputText placeholder="Price per day">
+              </div>
+          </div>
+          <div class="ui-g-12 text-align-right">
+                <p-splitButton (onClick)="save()" label="Save" icon="fa-check" [model]="items" styleClass="ui-button-success"></p-splitButton>
+            </div>
+      </div>
+    </form>
+
+    <hr class="detail-splitter">
+
+        <h3>Reservations</h3>
+        <p-table [value]="reservations">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>#</th>
+                    <th>From</th>
+                    <th>Until</th>
+                    <th>Paid</th>
+                    <th>Customer</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-reservation>
+                <tr>
+                    <td>
+                        <a [routerLink]="['/reservations', reservation.id]">{{reservation.id}}</a>
+                    </td>
+                    <td>{{reservation.startDate | date:'dd-MM-yyyy'}}</td>
+                    <td>{{reservation.startDate | date:'dd-MM-yyyy'}}</td>
+                    <td>
+                        <span *ngIf="reservation.paid">
+                            <fa name="check"></fa> Paid</span>
+                        <span *ngIf="!reservation.paid">
+                            <fa name="times"></fa> Not paid</span>
+                    </td>
+                    <td>
+                        <a [routerLink]="['/customers', reservation.customer]">{{reservation.realCustomer?.name}}</a>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+  </p-fieldset>
+</div>

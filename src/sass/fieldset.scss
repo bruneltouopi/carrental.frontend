@@ -1,0 +1,15 @@
+p-fieldset > fieldset > legend {
+    color: white !important;
+}
+
+p-fieldset[component="customers"] > fieldset > legend {
+    @include horizontal-gradient($customersAccent1, $customersAccent2);
+}
+
+p-fieldset[component="cars"] > fieldset > legend {
+    @include horizontal-gradient($carsAccent1, $carsAccent2);
+}
+
+p-fieldset[component="reservations"] > fieldset > legend {
+    @include horizontal-gradient($carsAccent1, $carsAccent2);
+}

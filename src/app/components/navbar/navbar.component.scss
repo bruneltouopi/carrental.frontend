@@ -1,0 +1,88 @@
+@import '../../../sass/_variables';
+@import '../../../sass/_mixins';
+
+@mixin horizontal-gradient-nav($color1, $color2, $backgroundAccent) {
+
+    display: block;
+    color: $textAccent;
+    font-family: $titleFont;
+    font-weight: 200;
+
+    text-decoration: none;
+    margin-top: 10px;
+    font-size: 20px;
+
+    position: relative;
+    line-height: 40px;
+    z-index: 1;
+    height: 40px;
+
+    & > span {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+  
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -99%;
+        bottom: 0;
+        width: 100%;
+        z-index: 0;
+        transition: all 0.1s linear;
+
+        @include horizontal-gradient($color1, $color2);
+    }
+
+    &:hover:before {
+        @include horizontal-gradient($color1, $backgroundAccent);
+        left: 0%;
+    }
+
+    &.active:before, &.active:hover:before {
+        left: 0%;
+        @include horizontal-gradient($color1, $color2);
+    }
+}
+
+:host {
+
+    & > nav {
+        text-align: left;
+    background: $backgroundAccent;
+    padding-top: 40px;
+    }
+
+    & > nav > div.logo {
+        width: 100%;
+        margin-left: 10px;
+        margin-right: 10px;
+
+        margin-bottom: 80px;
+    }
+
+    & > nav > div.logo > img {
+        width: 100%;
+        max-width: 70%;
+        margin: 0 auto;
+        display: block;
+    }
+
+    a.customers {
+        @include horizontal-gradient-nav($customersAccent1, $customersAccent2, $backgroundAccent);
+    }
+
+    a.cars {
+        @include horizontal-gradient-nav($carsAccent1, $carsAccent2, $backgroundAccent);
+    }
+
+    a.reservations {
+        @include horizontal-gradient-nav($reservationsAccent1, $reservationsAccent2, $backgroundAccent);
+    }
+}

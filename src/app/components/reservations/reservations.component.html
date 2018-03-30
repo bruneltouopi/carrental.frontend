@@ -6,14 +6,11 @@
   </form>
 
   <div class="ui-g-12 ui-md-6 ui-lg-4 ui-xl-3" *ngFor="let reservation of reservations">
-      <p-card title="{{reservation.realCar?.name}}" subtitle="{{reservation.realCustomer?.name}}">
+      <p-card title="{{reservation.realCar?.name}}" [routerLink]="['/reservations', reservation.id]" subtitle="{{reservation.realCustomer?.name}}">
           <p-header>
-             <img alt="test" src="https://www.primefaces.org/primeng/assets/showcase/images/usercard.png" />
+            <app-card-header-gradient icon="book" component="reservations"></app-card-header-gradient>
           </p-header>
           From: {{reservation.startDate | date:'dd-MM-yyyy'}}
           Until: {{reservation.endDate | date:'dd-MM-yyyy'}}
-          <p-footer>
-              <button pButton [routerLink]="['/reservations', reservation.id]" type="button" label="View" icon="fa-eye"></button>
-          </p-footer>
       </p-card>
   </div>

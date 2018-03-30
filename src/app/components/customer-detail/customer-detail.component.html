@@ -1,38 +1,46 @@
-<div class="customer-detail-component-container">
+<div class="detail-component-container">
 
-    <p-panel class="ui-xl-6 ui-lg-8 ui-md-10 ui-g-12">
-        <p-header>
-            <div class="ui-helper-clearfix">
-                <span class="ui-panel-title" style="font-size:16px;display:inline-block;margin-top:2px">{{customer?.name}}</span>
-
-                <p-splitButton [style]="{'float':'right'}" label="Save" icon="fa-check" (onClick)="save()" [model]="items"></p-splitButton>
-            </div>
-        </p-header>
+    <p-fieldset component="customers" legend="{{item?.name}}" class="ui-xl-6 ui-lg-8 ui-md-10 ui-g-12">
         <form [formGroup]="formGroup">
+            <h3 class="first">Details</h3>
             <div class="ui-g">
                 <div class="ui-g-12 ui-md-6">
-                    <div class="ui-inputgroup">
-                        <span class="ui-inputgroup-addon">
-                            <fa name="envelope"></fa>
-                        </span>
-                        <input type="email"  [email]="true" formControlName="email" pInputText placeholder="Email">
+                    <div class="ui-inputgroup notinline">
+                        <label>Email</label>
+                        <input type="email" [email]="true" formControlName="email" pInputText placeholder="Email">
                     </div>
                 </div>
 
                 <div class="ui-g-12 ui-md-6">
-                    <div class="ui-inputgroup">
-                        <span class="ui-inputgroup-addon">
-                            <fa name="user"></fa>
-                        </span>
+                    <div class="ui-inputgroup notinline">
+                        <label>Name</label>
                         <input type="text" formControlName="name" pInputText placeholder="Name">
                     </div>
+                </div>
+
+                <div class="ui-g-12 ui-md-6">
+                    <div class="ui-inputgroup notinline">
+                        <label>Price owed</label>
+                        <label>&euro; {{owedPrice}}</label>
+                    </div>
+                </div>
+
+                <div class="ui-g-12 ui-md-6">
+                    <div class="ui-inputgroup notinline">
+                        <label>Total income</label>
+                        <label>&euro; {{totalPrice}}</label>
+                    </div>
+                </div>
+
+                <div class="ui-g-12 text-align-right">
+                    <p-splitButton (onClick)="save()" label="Save" icon="fa-check" [model]="items" styleClass="ui-button-success"></p-splitButton>
                 </div>
             </div>
         </form>
 
-        Price owed: &euro; {{owedPrice}}
-        Total income: &euro; {{totalPrice}}
-        <hr>
+        <hr class="detail-splitter">
+
+        <h3>Reservations</h3>
         <p-table [value]="reservations">
             <ng-template pTemplate="header">
                 <tr>
@@ -45,7 +53,9 @@
             </ng-template>
             <ng-template pTemplate="body" let-reservation>
                 <tr>
-                    <td><a [routerLink]="['/reservations', reservation.id]">{{reservation.id}}</a></td>
+                    <td>
+                        <a [routerLink]="['/reservations', reservation.id]">{{reservation.id}}</a>
+                    </td>
                     <td>{{reservation.startDate | date:'dd-MM-yyyy'}}</td>
                     <td>{{reservation.startDate | date:'dd-MM-yyyy'}}</td>
                     <td>
@@ -60,5 +70,5 @@
                 </tr>
             </ng-template>
         </p-table>
-    </p-panel>
+    </p-fieldset>
 </div>

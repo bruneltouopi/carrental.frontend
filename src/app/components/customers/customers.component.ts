@@ -10,7 +10,7 @@ import Customer from '../../shared/models/customer.model';
 export class CustomersComponent implements OnInit {
   customers: Customer[];
 
-  constructor(private customersService:CustomersService) {}
+  constructor(private customersService: CustomersService) { }
 
   ngOnInit() {
     this.customersService.findAll().subscribe(items => this.customers = items);
