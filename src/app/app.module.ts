@@ -26,84 +26,42 @@ import { AppComponent } from './app.component';
 //shared services
 import { DateService } from './shared/services/date.service';
 
-//cars
-import { CarsComponent } from './components/cars/cars.component';
-import { CarsService } from './components/cars/cars.service';
-
-//customers
-import { CustomersComponent } from './components/customers/customers.component';
-import { CustomersService } from './components/customers/customers.service';
-
-//reservations
-import { ReservationsComponent } from './components/reservations/reservations.component';
-import { ReservationsService } from './components/reservations/reservations.service';
-
-//customer-detail
-import { CustomerDetailComponent } from './components/customer-detail/customer-detail.component';
-import { CustomerDetailService } from './components/customer-detail/customer-detail.service';
-
-//car-detail
-import { CarDetailComponent } from './components/car-detail/car-detail.component';
-import { CarDetailService } from './components/car-detail/car-detail.service';
-
 //navbar
 import { NavbarComponent } from './components/navbar/navbar.component';
 
-//card-header-gradient
-import { CardHeaderGradientComponent } from './components/card-header-gradient/card-header-gradient.component';
-
 //Propietary
 import CacheService from './shared/cache/Cache';
-import { JsonInterceptor } from './shared/services/json-interceptor.service';
-import { CacheInterceptor } from './shared/services/cache-interceptor.service';
-
+import { JsonAndCacheInterceptor } from './shared/services/json-interceptor.service';
+import { SharedModule } from './modules/shared.module';
+import { CarsService } from './components/cars/cars.service';
+import { ReservationsService } from './components/reservations/reservations.service';
+import { CarDetailService } from './components/car-detail/car-detail.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CarsComponent,
-    CustomersComponent,
-    ReservationsComponent,
-    CustomerDetailComponent,
-    NavbarComponent,
-    CarDetailComponent,
-    CardHeaderGradientComponent
+    NavbarComponent
   ],
   imports: [
-    BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    Angular2FontawesomeModule,
-    FormsModule,
-    TableModule,
-    ButtonModule,
-    CalendarModule,
     BrowserAnimationsModule,
     PanelModule,
     SidebarModule,
-    CardModule,
-    SplitButtonModule,
-    ReactiveFormsModule,
     ToastrModule.forRoot(),
-    FieldsetModule
+    FieldsetModule,
+    SharedModule.forRoot(),
   ],
   providers: [
     CarsService,
-    CustomersService,
     ReservationsService,
-    CustomerDetailService,
     DateService,
     CacheService,
     CarDetailService,
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: JsonInterceptor,
-      multi: true
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: CacheInterceptor,
+      useClass: JsonAndCacheInterceptor,
       multi: true
     }
   ],

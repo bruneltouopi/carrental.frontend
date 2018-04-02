@@ -5,7 +5,7 @@ import { Component, OnInit, Input } from '@angular/core';
   templateUrl: './card-header-gradient.component.html',
   styleUrls: ['./card-header-gradient.component.scss']
 })
-export class CardHeaderGradientComponent implements OnInit {
+class CardHeaderGradientComponent implements OnInit {
 
   @Input()
   icon: string;
@@ -19,3 +19,8 @@ export class CardHeaderGradientComponent implements OnInit {
   }
 
 }
+
+
+export class CardHeaderGradientComponentCustomers extends CardHeaderGradientComponent {}
+export class CardHeaderGradientComponentCars extends CardHeaderGradientComponent {}
+export class CardHeaderGradientComponentReservations extends CardHeaderGradientComponent {}

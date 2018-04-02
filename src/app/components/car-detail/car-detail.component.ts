@@ -55,6 +55,13 @@ export class CarDetailComponent extends BaseDetailComponent<Car> implements OnIn
 
   save() {
     super.save();
+
+    this.item.pricePerDay = this.formGroup.get('pricePerDay').value;
+    this.item.name = this.formGroup.get('name').value;
+
+    this.carDetailService().saveCar(this.item.id, this.item).subscribe(
+      car => this.toastrService.success("Car has been saved!")
+    );
   }
 
   ngOnDestroy() {

@@ -17,6 +17,13 @@ export class CarDetailService extends BaseService<Car> {
     return this.getAbsolute(`${this.apiUrl}${id}/reservations`);
   }
 
+  saveCar(id: number, car: Car): Observable<Car> {
+    let clone = JSON.parse(JSON.stringify(car)) as Car;
+    delete clone.reservations;
+
+    return this.put(id, clone);
+  }
+
   getCustomerForReservation(id: number): Observable<Customer> {
     let apiUrl = `${this.apiUrl}../reservations/${id}/customer`;
     return this.getAbsolute<Customer>(apiUrl);
