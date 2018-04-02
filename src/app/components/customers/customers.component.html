@@ -1,4 +1,7 @@
 <div class="ui-g">
+    <div class="ui-g-12">
+        <a [routerLink]="['/customers', 'new']" pButton type="text" icon="fa-plus"></a>
+    </div>
     <div class="ui-g-12 ui-md-6 ui-lg-4 ui-xl-3" *ngFor="let customer of customers">
         <p-card title="{{customer.name}}" [routerLink]="['/customers', customer.id]" subtitle="{{customer.email | lowercase}}">
             <p-header>
@@ -7,4 +10,4 @@
             Reservations: {{customer.reservations.length}}
         </p-card>
     </div>
-</div> 
+</div>

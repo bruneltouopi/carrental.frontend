@@ -1,4 +1,7 @@
 <div class="ui-g">
+    <div class="ui-g-12">
+        <a [routerLink]="['/cars', 'new']" pButton type="text" icon="fa-plus"></a>
+    </div>
     <div class="ui-g-12 ui-md-6 ui-lg-4 ui-xl-3" *ngFor="let car of cars">
         <p-card [routerLink]="['/cars', car.id]" title="{{car.name}}" subtitle="&euro; {{car.pricePerDay | number:'1.2'}} / day">
             <p-header>

@@ -1,5 +1,8 @@
 <div class="ui-g">
-  <form class="form-inline ui-xl-12">
+    <div class="ui-g-12">
+        <a [routerLink]="['/reservations', 'new']" pButton type="text" icon="fa-plus"></a>
+    </div>
+  <form class="form-inline ui-g-12">
     <p-calendar [(ngModel)]="startDate" name="startDate" dateFormat="dd-MM-yy"></p-calendar>
     <p-calendar [(ngModel)]="endDate" name="endDate" dateFormat="dd-MM-yy"></p-calendar>
     <p-button type="submit" class="btn btn-default" (click)="search()" label="Search"></p-button>
