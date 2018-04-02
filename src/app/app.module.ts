@@ -55,6 +55,7 @@ import { CardHeaderGradientComponent } from './components/card-header-gradient/c
 //Propietary
 import CacheService from './shared/cache/Cache';
 import { JsonInterceptor } from './shared/services/json-interceptor.service';
+import { CacheInterceptor } from './shared/services/cache-interceptor.service';
 
 
 
@@ -94,12 +95,17 @@ import { JsonInterceptor } from './shared/services/json-interceptor.service';
     CustomerDetailService,
     DateService,
     CacheService,
+    CarDetailService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JsonInterceptor,
       multi: true
     },
-    CarDetailService
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CacheInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

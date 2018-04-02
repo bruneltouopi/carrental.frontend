@@ -35,11 +35,6 @@ export default class CacheService {
 
         if(result === undefined) {
             result = func();
-
-            let sub = result.subscribe(r => {
-                this.insert(url, r);
-                sub.unsubscribe();
-            });
         }
 
         return result;
