@@ -19,6 +19,7 @@ import { CustomersService } from '../components/customers/customers.service';
 import { CustomerDetailService } from '../components/customer-detail/customer-detail.service';
 import { CustomerCreationComponent } from '../components/customer-creation/customer-creation.component';
 import CacheService from '../shared/cache/Cache';
+import { CustomerCreationService } from '../components/customer-creation/customer-creation.service';
 
 @NgModule({
     imports: [
@@ -41,7 +42,8 @@ import CacheService from '../shared/cache/Cache';
     ],
     providers: [
         CustomersService,
-        CustomerDetailService
+        CustomerDetailService,
+        CustomerCreationService
     ]
 })
 export class CustomersModule { }

@@ -20,6 +20,7 @@ import { ReservationsService } from '../components/reservations/reservations.ser
 import { ReservationDetailService } from '../components/reservation-detail/reservation-detail-service.service';
 import { ReservationCreationComponent } from '../components/reservation-creation/reservation-creation.component';
 import CacheService from '../shared/cache/Cache';
+import { ReservationCreationService } from '../components/reservation-creation/reservation-creation.service';
 
 @NgModule({
     imports: [
@@ -43,7 +44,8 @@ import CacheService from '../shared/cache/Cache';
     ],
     providers: [
         ReservationsService,
-        ReservationDetailService
+        ReservationDetailService,
+        ReservationCreationService
     ]
 })
 export class ReservationsModule { }

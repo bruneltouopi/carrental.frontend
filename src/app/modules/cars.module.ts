@@ -19,6 +19,7 @@ import { CarsService } from '../components/cars/cars.service';
 import { CarDetailService } from '../components/car-detail/car-detail.service';
 import { CarCreationComponent } from '../components/car-creation/car-creation.component';
 import CacheService from '../shared/cache/Cache';
+import { CarCreationService } from '../components/car-creation/car-creation.service';
 
 @NgModule({
     imports: [
@@ -41,7 +42,8 @@ import CacheService from '../shared/cache/Cache';
     ],
     providers: [
         CarsService,
-        CarDetailService
+        CarDetailService,
+        CarCreationService
     ]
 })
 export class CarsModule { }

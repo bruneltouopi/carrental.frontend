@@ -5,7 +5,7 @@ import Cache from '../cache/Cache';
 import 'rxjs/add/operator/map';
 
 export default abstract class BaseService<T> {
-    protected apiUrl: string;
+    public apiUrl: string;
 
     constructor(protected http: HttpClient, resource: string) {
         this.apiUrl = `${environment.apiUrl}${resource}/`;
@@ -18,7 +18,7 @@ export default abstract class BaseService<T> {
     }
 
     getById(id: number): Observable<T> {
-        let url = `${this.apiUrl}/${id}`;
+        let url = `${this.apiUrl}${id}`;
         return this.http.get<T>(url);
     }
 
@@ -28,7 +28,7 @@ export default abstract class BaseService<T> {
     }
 
     post(data: T): Observable<T> {
-        return this.http.post<T>(this.apiUrl, JSON.stringify(data));
+        return this.http.post<T>(this.apiUrl, data);
     }
 
     put(id: number, data: T): Observable<T> {
