@@ -1,3 +1,19 @@
-<p>
-  reservation-creation works!
-</p>
+<div class="detail-component-container">
+  <p-fieldset component="reservations" class="ui-xl-5 ui-lg-7 ui-md-9 ui-g-12" legend="Make a reservation">
+    <h3 class="first">Details</h3>
+    <div class="ui-g">
+      <div class="ui-g-12 ui-md-12">
+        <p-calendar [(ngModel)]="startDate" [minDate]="today" name="startDate" dateFormat="dd-MM-yy"></p-calendar>
+        <p-calendar [(ngModel)]="endDate" [minDate]="startDate" name="endDate" dateFormat="dd-MM-yy"></p-calendar>
+        <button (click)="search()" pButton icon="fa-search"></button>
+      </div>
+      <div class="ui-g-12 ui-md-12">
+        <p-dropdown [options]="cars" [(ngModel)]="selectedCar" placeholder="Select a Car" optionLabel="name" [showClear]="true"></p-dropdown>
+        <p-dropdown [options]="customers" [(ngModel)]="selectedCustomer" placeholder="Select a customer" optionLabel="name" [showClear]="true"></p-dropdown>
+      </div>
+      <div class="ui-g-12 text-align-right">
+        <button (click)="create()" label="Create" icon="fa-check" styleClass="ui-button-success" pButton></button>
+      </div>
+    </div>
+  </p-fieldset>
+</div>

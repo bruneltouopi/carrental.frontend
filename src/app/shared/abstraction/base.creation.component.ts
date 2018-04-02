@@ -19,6 +19,11 @@ export abstract class BaseCreationComponent<T extends BaseModel> implements OnIn
     abstract retrieveData(): T;
 
     create() {
+        if(!this.validate()) {
+            this.toastr.error("Please fill in all fields");
+            return;
+        }
+
         let data = this.retrieveData();
         this.postSub =  this.baseService.post(data).subscribe(item => {
             this.toastr.success("Item has been added!");

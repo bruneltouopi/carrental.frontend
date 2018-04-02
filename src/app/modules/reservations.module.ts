@@ -21,6 +21,7 @@ import { ReservationDetailService } from '../components/reservation-detail/reser
 import { ReservationCreationComponent } from '../components/reservation-creation/reservation-creation.component';
 import CacheService from '../shared/cache/Cache';
 import { ReservationCreationService } from '../components/reservation-creation/reservation-creation.service';
+import {DropdownModule} from 'primeng/dropdown';
 
 @NgModule({
     imports: [
@@ -34,7 +35,8 @@ import { ReservationCreationService } from '../components/reservation-creation/r
         FormsModule,
         ReactiveFormsModule, 
         SplitButtonModule,
-        CalendarModule
+        CalendarModule,
+        DropdownModule
     ],
     declarations: [
         CardHeaderGradientComponentReservations,
