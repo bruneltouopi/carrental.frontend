@@ -1,9 +1,12 @@
-FROM node:8.11 as node
-WORKDIR /app
-COPY package.json /app/
-RUN npm install
-COPY ./ /app/
-RUN ng build
+FROM johnpapa/angular-cli:latest as node
 
-FROM nginx:1.13.10
+RUN npm set strict-ssl false
+
+WORKDIR /app
+COPY ./ /app/
+RUN npm install
+RUN ng build --prod
+
+FROM nginx:1.13.10-alpine
 COPY --from=node /app/dist/ /usr/share/nginx/html
+EXPOSE 80

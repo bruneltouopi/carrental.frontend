@@ -17,7 +17,7 @@ import { BaseDetailComponent } from '../../shared/abstraction/base.detail.compon
 })
 export class CustomerDetailComponent extends BaseDetailComponent<Customer> implements OnInit {
   private reservationsSub: any;
-  private reservations: Reservation[];
+  public reservations: Reservation[];
 
   public totalPrice: number;
   public owedPrice: number;

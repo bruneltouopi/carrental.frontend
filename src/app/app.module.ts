@@ -29,9 +29,9 @@ import { DateService } from './shared/services/date.service';
 //navbar
 import { NavbarComponent } from './components/navbar/navbar.component';
 
-//Propietary
+//Propietary 
 import CacheService from './shared/cache/Cache';
-import { JsonAndCacheInterceptor } from './shared/services/json-interceptor.service';
+import { JsonInterceptor } from './shared/services/json-interceptor.service';
 import { SharedModule } from './modules/shared.module';
 import { CarsService } from './components/cars/cars.service';
 import { ReservationsService } from './components/reservations/reservations.service';
@@ -57,10 +57,9 @@ import { ReservationDetailService } from './components/reservation-detail/reserv
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: JsonAndCacheInterceptor,
+      useClass: JsonInterceptor,
       multi: true
     },
-    CacheService,
     DateService
   ],
   bootstrap: [AppComponent]

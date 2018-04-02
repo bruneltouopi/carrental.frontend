@@ -5,12 +5,11 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import Customer from '../../shared/models/customer.model';
 import Car from '../../shared/models/car.model';
-import Cache from '../../shared/cache/Cache';
 
 @Injectable()
 export class ReservationsService extends BaseService<Reservation> {
-  constructor(http: HttpClient, cache: Cache) {
-    super(http, cache, "reservations");
+  constructor(http: HttpClient) {
+    super(http, "reservations");
    }
 
    findAll(): Observable<Reservation[]> {

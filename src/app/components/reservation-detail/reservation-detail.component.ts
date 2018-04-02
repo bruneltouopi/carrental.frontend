@@ -16,10 +16,10 @@ import Customer from '../../shared/models/customer.model';
 })
 export class ReservationDetailComponent extends BaseDetailComponent<Reservation> implements OnInit {
 
-  private car: Car;
+  public car: Car;
   private carSub: any;
 
-  private customer: Customer;
+  public customer: Customer;
   private customerSub: any;
 
   private reservationDetailService = (): ReservationDetailService => (this.baseService as ReservationDetailService);

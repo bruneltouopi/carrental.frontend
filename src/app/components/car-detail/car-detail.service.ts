@@ -9,8 +9,8 @@ import Customer from '../../shared/models/customer.model';
 
 @Injectable()
 export class CarDetailService extends BaseService<Car> {
-  constructor(httpClient: HttpClient, cache: Cache) {
-    super(httpClient, cache, "cars");
+  constructor(httpClient: HttpClient) {
+    super(httpClient, "cars");
   }
 
   getReservations(id: number): Observable<Reservation[]> {

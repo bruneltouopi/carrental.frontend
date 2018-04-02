@@ -1,10 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-@Component({
-  selector: 'app-card-header-gradient',
-  templateUrl: './card-header-gradient.component.html',
-  styleUrls: ['./card-header-gradient.component.scss']
-})
 class CardHeaderGradientComponent implements OnInit {
 
   @Input()
@@ -20,7 +15,21 @@ class CardHeaderGradientComponent implements OnInit {
 
 }
 
-
+@Component({
+  selector: 'app-card-header-gradient',
+  templateUrl: './card-header-gradient.component.html',
+  styleUrls: ['./card-header-gradient.component.scss']
+})
 export class CardHeaderGradientComponentCustomers extends CardHeaderGradientComponent {}
+@Component({
+  selector: 'app-card-header-gradient',
+  templateUrl: './card-header-gradient.component.html',
+  styleUrls: ['./card-header-gradient.component.scss']
+})
 export class CardHeaderGradientComponentCars extends CardHeaderGradientComponent {}
+@Component({
+  selector: 'app-card-header-gradient',
+  templateUrl: './card-header-gradient.component.html',
+  styleUrls: ['./card-header-gradient.component.scss']
+})
 export class CardHeaderGradientComponentReservations extends CardHeaderGradientComponent {}

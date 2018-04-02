@@ -14,10 +14,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { JsonAndCacheInterceptor } from '../shared/services/json-interceptor.service';
+import { JsonInterceptor } from '../shared/services/json-interceptor.service';
 import { CustomersService } from '../components/customers/customers.service';
 import { CustomerDetailService } from '../components/customer-detail/customer-detail.service';
 import { CustomerCreationComponent } from '../components/customer-creation/customer-creation.component';
+import CacheService from '../shared/cache/Cache';
 
 @NgModule({
     imports: [

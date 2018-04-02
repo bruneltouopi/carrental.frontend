@@ -12,13 +12,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { JsonAndCacheInterceptor } from '../shared/services/json-interceptor.service';
+import { JsonInterceptor } from '../shared/services/json-interceptor.service';
 import { ReservationsComponent } from '../components/reservations/reservations.component';
 import { CalendarModule } from 'primeng/calendar';
 import { ReservationDetailComponent } from '../components/reservation-detail/reservation-detail.component';
 import { ReservationsService } from '../components/reservations/reservations.service';
 import { ReservationDetailService } from '../components/reservation-detail/reservation-detail-service.service';
 import { ReservationCreationComponent } from '../components/reservation-creation/reservation-creation.component';
+import CacheService from '../shared/cache/Cache';
 
 @NgModule({
     imports: [

@@ -12,12 +12,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { JsonAndCacheInterceptor } from '../shared/services/json-interceptor.service';
+import { JsonInterceptor } from '../shared/services/json-interceptor.service';
 import { CarsComponent } from '../components/cars/cars.component';
 import { CarDetailComponent } from '../components/car-detail/car-detail.component';
 import { CarsService } from '../components/cars/cars.service';
 import { CarDetailService } from '../components/car-detail/car-detail.service';
 import { CarCreationComponent } from '../components/car-creation/car-creation.component';
+import CacheService from '../shared/cache/Cache';
 
 @NgModule({
     imports: [

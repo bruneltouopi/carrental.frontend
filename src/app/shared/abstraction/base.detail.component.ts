@@ -10,12 +10,12 @@ import { Location } from '@angular/common';
 
 export abstract class BaseDetailComponent<T extends BaseModel> implements OnInit {
   protected id:number;
-  protected item: T;
+  public item: T;
   protected itemSub: any;
 
-  protected formGroup: FormGroup;
+  public formGroup: FormGroup;
 
-  protected items: MenuItem[];
+  public items: MenuItem[];
 
   constructor(protected route: ActivatedRoute, protected baseService: BaseService<T>, protected formBuilder: FormBuilder, protected toastrService: ToastrService, protected location: Location) { 
     this.createForm();

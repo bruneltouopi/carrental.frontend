@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
-import Cache from "../cache/Cache";
 
 // https://github.com/angular/angular/blob/master/packages/common/http/src/xhr.ts#L18
 const XSSI_PREFIX = /^\)\]\}',?\n/;
@@ -13,9 +12,7 @@ const XSSI_PREFIX = /^\)\]\}',?\n/;
  * @class JsonInterceptor
  */
 @Injectable()
-export class JsonAndCacheInterceptor implements HttpInterceptor {
-
-  constructor(private cache: Cache) {}
+export class JsonInterceptor implements HttpInterceptor {
 
   /**
    * Custom http request interceptor

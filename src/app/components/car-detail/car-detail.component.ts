@@ -15,7 +15,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./car-detail.component.scss']
 })
 export class CarDetailComponent extends BaseDetailComponent<Car> implements OnInit {
-  private reservations: Reservation[];
+  public reservations: Reservation[];
   private reservationsSub: any;
 
   private carDetailService = (): CarDetailService => (this.baseService as CarDetailService);

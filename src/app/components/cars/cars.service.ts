@@ -8,8 +8,8 @@ import Cache from '../../shared/cache/Cache';
 @Injectable()
 export class CarsService extends BaseService<Car> {
  
-  constructor(http: HttpClient, cache: Cache) {
-    super(http, cache, "cars");
+  constructor(http: HttpClient) {
+    super(http, "cars");
   }
 
   findAll() : Observable<Car[]> {
