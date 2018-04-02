@@ -25,6 +25,7 @@ export class CustomerDetailComponent extends BaseDetailComponent<Customer> imple
   constructor(route: ActivatedRoute, customerDetailService: CustomerDetailService, formBuilder: FormBuilder, toastrService: ToastrService, location: Location, private dateService: DateService) {
     super(route, customerDetailService, formBuilder, toastrService, location);
     this.totalPrice = 0;
+    this.owedPrice = 0;
   }
 
   customerDetailService = ():CustomerDetailService => (this.baseService as CustomerDetailService);

@@ -36,6 +36,7 @@ import { SharedModule } from './modules/shared.module';
 import { CarsService } from './components/cars/cars.service';
 import { ReservationsService } from './components/reservations/reservations.service';
 import { CarDetailService } from './components/car-detail/car-detail.service';
+import { ReservationDetailService } from './components/reservation-detail/reservation-detail-service.service';
 
 
 @NgModule({
@@ -54,16 +55,13 @@ import { CarDetailService } from './components/car-detail/car-detail.service';
     SharedModule.forRoot(),
   ],
   providers: [
-    CarsService,
-    ReservationsService,
-    DateService,
-    CacheService,
-    CarDetailService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JsonAndCacheInterceptor,
       multi: true
-    }
+    },
+    CacheService,
+    DateService
   ],
   bootstrap: [AppComponent]
 })

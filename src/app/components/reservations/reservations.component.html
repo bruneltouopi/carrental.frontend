@@ -5,6 +5,10 @@
     <p-button type="submit" class="btn btn-default" (click)="search()" label="Search"></p-button>
   </form>
 
+  <div *ngIf="filtered" class="ui-xl-12">
+    <p-button class="btn btn-primary" label="Remove filter" (click)="removeFilter()"></p-button>
+  </div>
+
   <div class="ui-g-12 ui-md-6 ui-lg-4 ui-xl-3" *ngFor="let reservation of reservations">
       <p-card title="{{reservation.realCar?.name}}" [routerLink]="['/reservations', reservation.id]" subtitle="{{reservation.realCustomer?.name}}">
           <p-header>

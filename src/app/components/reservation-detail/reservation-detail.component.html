@@ -1,0 +1,40 @@
+<div class="detail-component-container">
+  <p-fieldset component="reservations" class="ui-xl-6 ui-lg-8 ui-md-10 ui-g-12" legend="Reservation">
+
+    <h3 class="first">Details</h3>
+    <div class="ui-g">
+      <div class="ui-g-12 ui-md-6">
+        <div class="ui-inputgroup notinline">
+          <label>From</label>
+          {{item?.startDate | date:'dd-MM-yyyy'}}
+        </div>
+      </div>
+      <div class="ui-g-12 ui-md-6">
+        <div class="ui-inputgroup notinline">
+          <label>Until</label>
+          {{item?.endDate | date:'dd-MM-yyyy'}}
+        </div>
+      </div>
+      <div class="ui-g-12 ui-md-6">
+        <div class="ui-inputgroup notinline">
+          <label>By</label>
+          <a *ngIf="customer" [routerLink]="['/customers', customer?.id]">
+            {{customer?.name}}
+          </a>
+        </div>
+      </div>
+      <div class="ui-g-12 ui-md-6">
+        <div class="ui-inputgroup notinline">
+          <label>Car</label>
+          <a *ngIf="car" [routerLink]="['/cars', car?.id]">
+            {{car?.name}}
+          </a>
+        </div>
+      </div>
+      <div class="ui-g-12 text-align-right">
+        <p-splitButton (onClick)="delete()" label="Delete" icon="fa-times" styleClass="ui-button-danger"></p-splitButton>
+      </div>
+    </div>
+
+  </p-fieldset>
+</div>

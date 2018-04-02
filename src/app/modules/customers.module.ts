@@ -15,6 +15,9 @@ import { SplitButtonModule } from 'primeng/splitbutton';
 import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JsonAndCacheInterceptor } from '../shared/services/json-interceptor.service';
+import { CustomersService } from '../components/customers/customers.service';
+import { CustomerDetailService } from '../components/customer-detail/customer-detail.service';
+import { CustomerCreationComponent } from '../components/customer-creation/customer-creation.component';
 
 @NgModule({
     imports: [
@@ -27,13 +30,17 @@ import { JsonAndCacheInterceptor } from '../shared/services/json-interceptor.ser
         FieldsetModule,
         FormsModule,
         ReactiveFormsModule,
-        SplitButtonModule,
-
+        SplitButtonModule
     ],
     declarations: [
         CardHeaderGradientComponentCustomers,
         CustomersComponent,
-        CustomerDetailComponent
+        CustomerDetailComponent,
+        CustomerCreationComponent
+    ],
+    providers: [
+        CustomersService,
+        CustomerDetailService
     ]
 })
 export class CustomersModule { }

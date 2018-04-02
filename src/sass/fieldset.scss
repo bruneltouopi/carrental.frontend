@@ -11,5 +11,5 @@ p-fieldset[component="cars"] > fieldset > legend {
 }
 
 p-fieldset[component="reservations"] > fieldset > legend {
-    @include horizontal-gradient($carsAccent1, $carsAccent2);
+    @include horizontal-gradient($reservationsAccent1, $reservationsAccent2);
 }

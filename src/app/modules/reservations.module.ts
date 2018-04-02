@@ -15,6 +15,10 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JsonAndCacheInterceptor } from '../shared/services/json-interceptor.service';
 import { ReservationsComponent } from '../components/reservations/reservations.component';
 import { CalendarModule } from 'primeng/calendar';
+import { ReservationDetailComponent } from '../components/reservation-detail/reservation-detail.component';
+import { ReservationsService } from '../components/reservations/reservations.service';
+import { ReservationDetailService } from '../components/reservation-detail/reservation-detail-service.service';
+import { ReservationCreationComponent } from '../components/reservation-creation/reservation-creation.component';
 
 @NgModule({
     imports: [
@@ -32,7 +36,13 @@ import { CalendarModule } from 'primeng/calendar';
     ],
     declarations: [
         CardHeaderGradientComponentReservations,
-        ReservationsComponent
+        ReservationsComponent,
+        ReservationDetailComponent,
+        ReservationCreationComponent
+    ],
+    providers: [
+        ReservationsService,
+        ReservationDetailService
     ]
 })
 export class ReservationsModule { }

@@ -15,6 +15,9 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JsonAndCacheInterceptor } from '../shared/services/json-interceptor.service';
 import { CarsComponent } from '../components/cars/cars.component';
 import { CarDetailComponent } from '../components/car-detail/car-detail.component';
+import { CarsService } from '../components/cars/cars.service';
+import { CarDetailService } from '../components/car-detail/car-detail.service';
+import { CarCreationComponent } from '../components/car-creation/car-creation.component';
 
 @NgModule({
     imports: [
@@ -32,7 +35,12 @@ import { CarDetailComponent } from '../components/car-detail/car-detail.componen
     declarations: [
         CardHeaderGradientComponentCars,
         CarsComponent,
-        CarDetailComponent
+        CarDetailComponent,
+        CarCreationComponent
+    ],
+    providers: [
+        CarsService,
+        CarDetailService
     ]
 })
 export class CarsModule { }
