@@ -23,4 +23,8 @@ export class ReservationDetailService extends BaseService<Reservation> {
     let apiUrl = `${this.apiUrl}${id}/customer`;
     return this.getAbsolute<Customer>(apiUrl);
   }
+
+  togglePaid(id: number): Observable<Reservation> {
+    return this.put(id, new Reservation());
+  }
 }

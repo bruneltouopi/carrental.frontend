@@ -31,8 +31,14 @@
           </a>
         </div>
       </div>
-      <div class="ui-g-12 text-align-right">
-        <p-splitButton (onClick)="delete()" label="Delete" icon="fa-times" styleClass="ui-button-danger"></p-splitButton>
+      <div class="ui-g-12 ui-md-6">
+        <div class="ui-inputgroup notinline">
+          <label>Status</label>
+          <label>{{item?.paid ? 'Paid' : 'Not paid'}}</label>
+        </div>
+      </div>
+      <div class="ui-g-4">
+        <p-splitButton (onClick)="delete()" [model]="items" label="Delete" icon="fa-times" styleClass="ui-button-danger"></p-splitButton>
       </div>
     </div>
 

@@ -22,26 +22,51 @@ export class ReservationDetailComponent extends BaseDetailComponent<Reservation>
   public customer: Customer;
   private customerSub: any;
 
+  private paidSub: any;
+
   private reservationDetailService = (): ReservationDetailService => (this.baseService as ReservationDetailService);
 
   constructor(route: ActivatedRoute, reservationDetailService: ReservationDetailService, formBuilder: FormBuilder, toastrService: ToastrService, location: Location) {
     super(route, reservationDetailService, formBuilder, toastrService, location);
+    this.item = new Reservation();    
   }
 
   ngOnInit() {
     super.ngOnInit();
 
+    
+    this.setDropdown();
+
     this.carSub = this.reservationDetailService().getCarForReservation(this.id).subscribe(car => this.car = car);
     this.customerSub = this.reservationDetailService().getCustomerForReservation(this.id).subscribe(customer => this.customer = customer);
-  } 
+  }
+
+  setDropdown() {
+    this.items = [{
+      label: this.item.paid ? 'Paid' : 'Not Paid', icon:  this.item.paid ? 'fa-check' : 'fa-close', command: () => {
+        this.togglePaid()
+      }
+    }];
+  }
 
   createForm() {
-    
+
+  }
+
+  togglePaid() {
+    this.reservationDetailService().togglePaid(this.id).subscribe(reservation => {
+      this.item = reservation;
+      this.toastrService.success(`Reservation #${reservation.id} is now marked as ${reservation.paid ? "paid" : "not paid"}.`);
+      this.setDropdown();
+    });
   }
 
   ngOnDestroy() {
     super.ngOnDestroy();
     this.customerSub.unsubscribe();
     this.carSub.unsubscribe();
+
+    if (this.paidSub !== undefined)
+      this.paidSub.unsubscribe();
   }
 }
